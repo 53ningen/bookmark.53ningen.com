@@ -16,7 +16,7 @@ export default function TagsPage({ tag }: TagsPageProps) {
 
   return (
     <Container maxWidth={false} disableGutters>
-      <Header authorized={authorized} />
+      <Header />
       <Container maxWidth="lg" sx={{ width: '100%' }}>
         <Grid container spacing={2} direction="row-reverse">
           <Grid xs={12} md={9}>

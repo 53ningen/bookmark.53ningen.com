@@ -10,6 +10,11 @@
       "StackName": "amplify-bookmarkapp-dev-30902",
       "StackId": "arn:aws:cloudformation:ap-northeast-1:417448763805:stack/amplify-bookmarkapp-dev-30902/b654d9c0-86da-11ed-ba39-0a7c405cf5e3",
       "AmplifyAppId": "d1hpxs2po4zgq1"
+    },
+    "categories": {
+      "auth": {
+        "BookmarkApp": {}
+      }
     }
   }
 }

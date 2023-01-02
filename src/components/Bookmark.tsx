@@ -1,7 +1,7 @@
 import DeleteIcon from '@mui/icons-material/Delete'
 import EditIcon from '@mui/icons-material/Edit'
 import { Avatar, Card, CardContent, CardHeader, IconButton, Stack, Typography } from '@mui/material'
-import Link from '../Link'
+import Link from './Link'
 import { Tags } from './Tags'
 
 // TODO: REPLACE ME WITH GRAPHQL AUTO GEN INTERFACE

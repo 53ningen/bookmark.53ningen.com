@@ -1,5 +1,5 @@
 import { Box, Chip } from '@mui/material'
-import Link from '../Link'
+import Link from './Link'
 
 interface TagsProps {
   tags: string[]

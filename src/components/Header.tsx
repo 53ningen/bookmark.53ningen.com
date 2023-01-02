@@ -1,13 +1,10 @@
-import { AppBar, Button, Toolbar } from '@mui/material'
+import { AppBar, Toolbar } from '@mui/material'
 import Container from '@mui/material/Container'
 import Typography from '@mui/material/Typography'
-import Link from '../Link'
+import Link from './Link'
+import { LoginButton } from './LoginButton'
 
-export interface HeaderProps {
-  authorized: boolean
-}
-
-export const Header = ({ authorized }: HeaderProps) => {
+export const Header = () => {
   return (
     <>
       <AppBar position="fixed" sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}>
@@ -18,7 +15,7 @@ export const Header = ({ authorized }: HeaderProps) => {
                 bookmark.53ningen.com
               </Link>
             </Typography>
-            <Button color="inherit">{authorized ? 'LOGOUT' : 'LOGIN'}</Button>
+            <LoginButton />
           </Toolbar>
         </Container>
       </AppBar>
