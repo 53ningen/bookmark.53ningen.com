@@ -11,13 +11,13 @@ export interface BookmarkModel {
   updated: Date
   created: Date
   comment: string
-  iconUrl: URL | undefined
+  iconUrl?: URL
   tags: string[]
 }
 
 export interface BookmarkProps {
   bookmark: BookmarkModel
-  editable: boolean | undefined
+  editable?: boolean
 }
 
 export const Bookmark = ({ bookmark, editable }: BookmarkProps) => {

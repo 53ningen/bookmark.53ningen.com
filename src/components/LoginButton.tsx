@@ -1,15 +1,14 @@
 import { Button } from '@mui/material'
-import { Auth } from 'aws-amplify'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
+import { useAuth } from '../context/AuthContext'
 import { LoginDialog } from './LoginDialog'
 
 export const LoginButton = () => {
-  const [authenticated, setAuthenticated] = useState(false)
+  const { isLoggedIn, logout, initialized } = useAuth()
   const [dialogOpen, setDialogOpen] = useState(false)
   const buttonOnClick = async () => {
-    if (authenticated) {
-      await Auth.signOut()
-      setAuthenticated(false)
+    if (isLoggedIn()) {
+      await logout()
     } else {
       setDialogOpen(true)
     }
@@ -19,22 +18,11 @@ export const LoginButton = () => {
   }
   const onLoggedIn = () => {
     setDialogOpen(false)
-    setAuthenticated(true)
   }
-  useEffect(() => {
-    ;(async () => {
-      try {
-        await Auth.currentAuthenticatedUser()
-        setAuthenticated(true)
-      } catch {
-        setAuthenticated(false)
-      }
-    })()
-  }, [])
   return (
     <>
-      <Button color="inherit" onClick={buttonOnClick}>
-        {authenticated ? 'LOGOUT' : 'LOGIN'}
+      <Button color="inherit" onClick={buttonOnClick} sx={{ display: initialized ? 'inherit' : 'none' }}>
+        {isLoggedIn() ? 'LOGOUT' : 'LOGIN'}
       </Button>
       <LoginDialog open={dialogOpen} handleClose={handleClose} onLoggedIn={onLoggedIn} />
     </>

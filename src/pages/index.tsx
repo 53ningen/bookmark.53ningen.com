@@ -1,31 +1,20 @@
-import { CognitoUser } from '@aws-amplify/auth'
 import { Box, Paper, Typography } from '@mui/material'
 import Container from '@mui/material/Container'
 import Grid from '@mui/material/Unstable_Grid2'
-import { Auth } from 'aws-amplify'
-import { useEffect, useState } from 'react'
 import { BookmarkList, BookmarkModel } from '../components/Bookmark'
 import { Header } from '../components/Header'
 import { Tags } from '../components/Tags'
+import { useAuth } from '../context/AuthContext'
 
 export default function Home() {
-  const [user, setUser] = useState<CognitoUser>()
-  useEffect(() => {
-    ;(async () => {
-      try {
-        const user = await Auth.currentAuthenticatedUser()
-        setUser(user)
-      } catch {}
-    })()
-  }, [])
-  console.log('hog')
+  const { isLoggedIn } = useAuth()
   return (
     <Container maxWidth={false} disableGutters>
       <Header />
       <Container maxWidth="lg" sx={{ width: '100%' }}>
         <Grid container spacing={2} direction="row-reverse">
           <Grid xs={12} md={9}>
-            <BookmarkList bookmarks={bookmarks} editable={user !== undefined} />
+            <BookmarkList bookmarks={bookmarks} editable={isLoggedIn()} />
           </Grid>
           <Grid xs={12} md={3}>
             <Paper sx={{ height: '100%' }}>
