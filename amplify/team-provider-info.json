@@ -1,14 +1,14 @@
 {
-  "dev": {
+  "stage": {
     "awscloudformation": {
-      "AuthRoleName": "amplify-bookmarkapp-dev-30902-authRole",
-      "UnauthRoleArn": "arn:aws:iam::417448763805:role/amplify-bookmarkapp-dev-30902-unauthRole",
-      "AuthRoleArn": "arn:aws:iam::417448763805:role/amplify-bookmarkapp-dev-30902-authRole",
+      "AuthRoleName": "amplify-bookmarkapp-stage-210002-authRole",
+      "UnauthRoleArn": "arn:aws:iam::417448763805:role/amplify-bookmarkapp-stage-210002-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::417448763805:role/amplify-bookmarkapp-stage-210002-authRole",
       "Region": "ap-northeast-1",
-      "DeploymentBucketName": "amplify-bookmarkapp-dev-30902-deployment",
-      "UnauthRoleName": "amplify-bookmarkapp-dev-30902-unauthRole",
-      "StackName": "amplify-bookmarkapp-dev-30902",
-      "StackId": "arn:aws:cloudformation:ap-northeast-1:417448763805:stack/amplify-bookmarkapp-dev-30902/b654d9c0-86da-11ed-ba39-0a7c405cf5e3",
+      "DeploymentBucketName": "amplify-bookmarkapp-stage-210002-deployment",
+      "UnauthRoleName": "amplify-bookmarkapp-stage-210002-unauthRole",
+      "StackName": "amplify-bookmarkapp-stage-210002",
+      "StackId": "arn:aws:cloudformation:ap-northeast-1:417448763805:stack/amplify-bookmarkapp-stage-210002/28284d70-8b5e-11ed-845f-0adbaac068a9",
       "AmplifyAppId": "d1hpxs2po4zgq1"
     },
     "categories": {

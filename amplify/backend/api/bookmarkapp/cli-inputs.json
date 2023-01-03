@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "serviceConfiguration": {
+    "apiName": "bookmarkapp",
+    "serviceName": "AppSync",
+    "gqlSchemaPath": "/Users/yanagyu/Workspace/projects/bookmark.53ningen.com/amplify/backend/api/bookmarkapp/schema.graphql",
+    "defaultAuthType": {
+      "mode": "AWS_IAM"
+    },
+    "conflictResolution": {},
+    "additionalAuthTypes": [
+      {
+        "mode": "API_KEY",
+        "expirationTime": 7,
+        "apiKeyExpirationDate": "2023-01-10T09:39:54.801Z",
+        "keyDescription": "debug"
+      }
+    ]
+  }
+}

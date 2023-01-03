@@ -1,27 +1,17 @@
 import DeleteIcon from '@mui/icons-material/Delete'
 import EditIcon from '@mui/icons-material/Edit'
 import { Avatar, Card, CardContent, CardHeader, IconButton, Stack, Typography } from '@mui/material'
+import { Bookmark as BookmarkData, Tag } from '../API'
 import Link from './Link'
 import { Tags } from './Tags'
 
-// TODO: REPLACE ME WITH GRAPHQL AUTO GEN INTERFACE
-export interface BookmarkModel {
-  url: URL
-  title: string
-  updated: Date
-  created: Date
-  comment: string
-  iconUrl?: URL
-  tags: string[]
-}
-
 export interface BookmarkProps {
-  bookmark: BookmarkModel
+  bookmark: BookmarkData
   editable?: boolean
 }
 
 export const Bookmark = ({ bookmark, editable }: BookmarkProps) => {
-  const { url, title, updated, created, comment, iconUrl, tags } = bookmark
+  const { url, title, updatedAt, createdAt, comment, iconUrl, tags } = bookmark
   const actionItems = (
     <>
       <IconButton>
@@ -48,9 +38,13 @@ export const Bookmark = ({ bookmark, editable }: BookmarkProps) => {
         <Stack spacing={2}>
           <Typography>{comment}</Typography>
           <Typography variant="caption">
-            updated: {updated.toDateString()}, created: {created.toDateString()}
+            updated: {updatedAt}, created: {createdAt}
           </Typography>
-          <Tags tags={tags} />
+          <Tags
+            tags={tags?.items?.map((i) => {
+              return { id: i?.tagID } as Tag
+            })}
+          />
         </Stack>
       </CardContent>
     </Card>
@@ -58,7 +52,7 @@ export const Bookmark = ({ bookmark, editable }: BookmarkProps) => {
 }
 
 export interface BookmarkListProps {
-  bookmarks: BookmarkModel[]
+  bookmarks: BookmarkData[]
   editable: boolean
 }
 
