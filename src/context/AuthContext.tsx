@@ -1,4 +1,5 @@
 import { CognitoUser } from '@aws-amplify/auth'
+import { ChallengeName } from 'amazon-cognito-identity-js'
 import { Auth } from 'aws-amplify'
 import { createContext, FC, ReactNode, useContext, useEffect, useState } from 'react'
 
@@ -6,16 +7,18 @@ interface AuthState {
   user?: CognitoUser
   initialized: boolean
   isLoggedIn: () => boolean
-  login: (username: string, password: string) => Promise<void>
+  login: (username: string, password: string) => Promise<ChallengeName | undefined>
   logout: () => Promise<void>
+  completeNewPassword: (newPassword: string) => Promise<void>
 }
 
 export const initalAppState: AuthState = {
   user: undefined,
   initialized: false,
   isLoggedIn: () => false,
-  login: async (_, __) => {},
+  login: async (_, __) => undefined,
   logout: async () => {},
+  completeNewPassword: async () => {},
 }
 
 const AuthContext = createContext<AuthState>(initalAppState)
@@ -35,10 +38,14 @@ export const AuthProvider: FC<AuthProviderProps> = ({ children }) => {
   const login = async (username: string, password: string) => {
     const user = (await Auth.signIn(username, password)) as CognitoUser
     setUser(user)
+    return user.challengeName
   }
   const logout = async () => {
     await Auth.signOut()
     setUser(undefined)
+  }
+  const completeNewPassword = async (newPassword: string) => {
+    await Auth.completeNewPassword(user, newPassword)
   }
   const state = {
     user,
@@ -46,6 +53,7 @@ export const AuthProvider: FC<AuthProviderProps> = ({ children }) => {
     isLoggedIn,
     login,
     logout,
+    completeNewPassword,
   }
   useEffect(() => {
     ;(async () => {
