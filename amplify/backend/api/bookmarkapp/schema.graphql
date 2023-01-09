@@ -3,7 +3,7 @@ input AMPLIFY {
 }
 
 type Bookmark
-  @model
+  @model(subscriptions: null)
   @auth(
     rules: [{ allow: public, provider: iam, operations: [read] }, { allow: private, provider: iam }, { allow: public }]
   ) {
@@ -20,7 +20,7 @@ type Bookmark
 }
 
 type Tag
-  @model
+  @model(subscriptions: null)
   @auth(
     rules: [{ allow: public, provider: iam, operations: [read] }, { allow: private, provider: iam }, { allow: public }]
   ) {
