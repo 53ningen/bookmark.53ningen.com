@@ -21,12 +21,18 @@ export const getBookmark = /* GraphQL */ `
             comment
             iconUrl
             dead
+            tags {
+              nextToken
+            }
             type
             createdAt
             updatedAt
           }
           tag {
             id
+            bookmarks {
+              nextToken
+            }
             createdAt
             updatedAt
           }
@@ -67,6 +73,21 @@ export const listBookmarks = /* GraphQL */ `
             id
             bookmarkID
             tagID
+            bookmark {
+              url
+              title
+              comment
+              iconUrl
+              dead
+              type
+              createdAt
+              updatedAt
+            }
+            tag {
+              id
+              createdAt
+              updatedAt
+            }
             createdAt
             updatedAt
           }
@@ -108,6 +129,21 @@ export const listBookmarksOrderByCreatedAt = /* GraphQL */ `
             id
             bookmarkID
             tagID
+            bookmark {
+              url
+              title
+              comment
+              iconUrl
+              dead
+              type
+              createdAt
+              updatedAt
+            }
+            tag {
+              id
+              createdAt
+              updatedAt
+            }
             createdAt
             updatedAt
           }
@@ -136,12 +172,18 @@ export const getTag = /* GraphQL */ `
             comment
             iconUrl
             dead
+            tags {
+              nextToken
+            }
             type
             createdAt
             updatedAt
           }
           tag {
             id
+            bookmarks {
+              nextToken
+            }
             createdAt
             updatedAt
           }
@@ -169,6 +211,21 @@ export const listTags = /* GraphQL */ `
             id
             bookmarkID
             tagID
+            bookmark {
+              url
+              title
+              comment
+              iconUrl
+              dead
+              type
+              createdAt
+              updatedAt
+            }
+            tag {
+              id
+              createdAt
+              updatedAt
+            }
             createdAt
             updatedAt
           }
@@ -181,9 +238,9 @@ export const listTags = /* GraphQL */ `
     }
   }
 `;
-export const getBookmakTags = /* GraphQL */ `
-  query GetBookmakTags($id: ID!) {
-    getBookmakTags(id: $id) {
+export const getBookmarkTag = /* GraphQL */ `
+  query GetBookmarkTag($id: ID!) {
+    getBookmarkTag(id: $id) {
       id
       bookmarkID
       tagID
@@ -198,6 +255,21 @@ export const getBookmakTags = /* GraphQL */ `
             id
             bookmarkID
             tagID
+            bookmark {
+              url
+              title
+              comment
+              iconUrl
+              dead
+              type
+              createdAt
+              updatedAt
+            }
+            tag {
+              id
+              createdAt
+              updatedAt
+            }
             createdAt
             updatedAt
           }
@@ -214,6 +286,21 @@ export const getBookmakTags = /* GraphQL */ `
             id
             bookmarkID
             tagID
+            bookmark {
+              url
+              title
+              comment
+              iconUrl
+              dead
+              type
+              createdAt
+              updatedAt
+            }
+            tag {
+              id
+              createdAt
+              updatedAt
+            }
             createdAt
             updatedAt
           }
@@ -227,13 +314,13 @@ export const getBookmakTags = /* GraphQL */ `
     }
   }
 `;
-export const listBookmakTags = /* GraphQL */ `
-  query ListBookmakTags(
-    $filter: ModelBookmakTagsFilterInput
+export const listBookmarkTags = /* GraphQL */ `
+  query ListBookmarkTags(
+    $filter: ModelBookmarkTagFilterInput
     $limit: Int
     $nextToken: String
   ) {
-    listBookmakTags(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    listBookmarkTags(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
         bookmarkID
@@ -245,6 +332,13 @@ export const listBookmakTags = /* GraphQL */ `
           iconUrl
           dead
           tags {
+            items {
+              id
+              bookmarkID
+              tagID
+              createdAt
+              updatedAt
+            }
             nextToken
           }
           type
@@ -254,6 +348,13 @@ export const listBookmakTags = /* GraphQL */ `
         tag {
           id
           bookmarks {
+            items {
+              id
+              bookmarkID
+              tagID
+              createdAt
+              updatedAt
+            }
             nextToken
           }
           createdAt

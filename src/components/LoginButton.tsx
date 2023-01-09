@@ -21,9 +21,11 @@ export const LoginButton = () => {
   }
   return (
     <>
-      <Button color="inherit" onClick={buttonOnClick} sx={{ display: initialized ? 'inherit' : 'none' }}>
-        {isLoggedIn() ? 'LOGOUT' : 'LOGIN'}
-      </Button>
+      {initialized && (
+        <Button color="inherit" onClick={buttonOnClick}>
+          {isLoggedIn() ? 'LOGOUT' : 'LOGIN'}
+        </Button>
+      )}
       <LoginDialog open={dialogOpen} handleClose={handleClose} onLoggedIn={onLoggedIn} />
     </>
   )

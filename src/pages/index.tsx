@@ -1,60 +1,54 @@
-import { Box, Paper, Typography } from '@mui/material'
-import Container from '@mui/material/Container'
-import Grid from '@mui/material/Unstable_Grid2'
+import { Stack, Typography } from '@mui/material'
 import { API, graphqlOperation } from 'aws-amplify'
-import { useEffect, useState } from 'react'
-import { Bookmark, Tag } from '../API'
-import { BookmarkList } from '../components/Bookmark'
-import { Header } from '../components/Header'
-import { Tags } from '../components/Tags'
-import { useAuth } from '../context/AuthContext'
+import { Bookmark } from '../API'
+import { BookmarkList } from '../components/BookmarkList'
 import { listBookmarks } from '../graphql/queries'
 
-export default function Home() {
-  const { isLoggedIn } = useAuth()
-  const [bookmarks, setBookmarks] = useState<Bookmark[]>([])
-  useEffect(() => {
-    ;(async () => {
-      const res = await API.graphql(graphqlOperation(listBookmarks))
-      if ('data' in res && res.data.listBookmarks) {
-        const items = res.data.listBookmarks.items as Bookmark[]
-        setBookmarks(items)
-        return
-      } else if ('errors' in res) {
-        throw Error('invalid response')
-      } else if ('data' in res && res.data.listBookmarks === null) {
-        return
-      }
-    })()
-  }, [])
+interface HomeProps {
+  initBookmarks?: Bookmark[]
+  initNextToken?: string
+  initErrorMessage?: string
+  generatedAt: string
+}
+
+export default function Home({ initBookmarks, initNextToken, initErrorMessage, generatedAt }: HomeProps) {
   return (
-    <Container maxWidth={false} disableGutters>
-      <Header />
-      <Container maxWidth="lg" sx={{ width: '100%' }}>
-        <Grid container spacing={2} direction="row-reverse">
-          <Grid xs={12} md={9}>
-            <BookmarkList bookmarks={bookmarks} editable={isLoggedIn()} />
-          </Grid>
-          <Grid xs={12} md={3}>
-            <Paper sx={{ height: '100%' }}>
-              <Box p={2}>
-                <Typography variant="h4" pb={2}>
-                  Tags
-                </Typography>
-                <Tags
-                  tags={
-                    bookmarks.length === 0
-                      ? []
-                      : bookmarks[0].tags!.items.map((b) => {
-                          return { id: b!.tagID } as Tag
-                        })
-                  }
-                />
-              </Box>
-            </Paper>
-          </Grid>
-        </Grid>
-      </Container>
-    </Container>
+    <Stack spacing={2}>
+      <BookmarkList initBookmarks={initBookmarks} initNextToken={initNextToken} />
+      <Typography variant="caption" textAlign="right">
+        Generated at {generatedAt}
+      </Typography>
+    </Stack>
   )
+}
+
+export async function getStaticProps() {
+  const revalidate = 60
+  var props: any = {
+    generatedAt: new Date().toISOString(),
+  }
+  try {
+    const res = await API.graphql(graphqlOperation(listBookmarks))
+    if ('data' in res && res.data.listBookmarks) {
+      props.initBookmarks = res.data.listBookmarks.items as Bookmark[]
+      const initNextToken = res.data.listBookmarks.nextToken
+      if (initNextToken) {
+        props.initNextToken = initNextToken
+      }
+      return {
+        props,
+        revalidate,
+      }
+    } else if ('errors' in res && res.errors && res.errors.length > 0) {
+      throw Error(res.errors[0].message)
+    } else {
+      throw Error('unexpected error')
+    }
+  } catch (e) {
+    props.initErrorMessage = e instanceof Error ? e.message : 'unexpected error'
+    return {
+      props,
+      revalidate,
+    }
+  }
 }

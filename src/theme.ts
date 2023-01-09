@@ -58,11 +58,20 @@ const theme = createTheme({
       overflowWrap: 'anywhere',
     },
     body1: {
-      fontSize: 16,
+      fontSize: 14,
       overflowWrap: 'anywhere',
     },
     button: {
       textTransform: 'none',
+    },
+    caption: {
+      fontSize: 12,
+      overflowWrap: 'anywhere',
+      color: 'GrayText',
+    },
+    subtitle1: {
+      fontSize: 16,
+      fontWeight: 800,
     },
   },
   components: {

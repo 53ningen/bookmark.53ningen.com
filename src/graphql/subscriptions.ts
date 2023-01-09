@@ -21,12 +21,18 @@ export const onCreateBookmark = /* GraphQL */ `
             comment
             iconUrl
             dead
+            tags {
+              nextToken
+            }
             type
             createdAt
             updatedAt
           }
           tag {
             id
+            bookmarks {
+              nextToken
+            }
             createdAt
             updatedAt
           }
@@ -60,12 +66,18 @@ export const onUpdateBookmark = /* GraphQL */ `
             comment
             iconUrl
             dead
+            tags {
+              nextToken
+            }
             type
             createdAt
             updatedAt
           }
           tag {
             id
+            bookmarks {
+              nextToken
+            }
             createdAt
             updatedAt
           }
@@ -99,12 +111,18 @@ export const onDeleteBookmark = /* GraphQL */ `
             comment
             iconUrl
             dead
+            tags {
+              nextToken
+            }
             type
             createdAt
             updatedAt
           }
           tag {
             id
+            bookmarks {
+              nextToken
+            }
             createdAt
             updatedAt
           }
@@ -134,12 +152,18 @@ export const onCreateTag = /* GraphQL */ `
             comment
             iconUrl
             dead
+            tags {
+              nextToken
+            }
             type
             createdAt
             updatedAt
           }
           tag {
             id
+            bookmarks {
+              nextToken
+            }
             createdAt
             updatedAt
           }
@@ -168,12 +192,18 @@ export const onUpdateTag = /* GraphQL */ `
             comment
             iconUrl
             dead
+            tags {
+              nextToken
+            }
             type
             createdAt
             updatedAt
           }
           tag {
             id
+            bookmarks {
+              nextToken
+            }
             createdAt
             updatedAt
           }
@@ -202,12 +232,18 @@ export const onDeleteTag = /* GraphQL */ `
             comment
             iconUrl
             dead
+            tags {
+              nextToken
+            }
             type
             createdAt
             updatedAt
           }
           tag {
             id
+            bookmarks {
+              nextToken
+            }
             createdAt
             updatedAt
           }
@@ -221,9 +257,9 @@ export const onDeleteTag = /* GraphQL */ `
     }
   }
 `;
-export const onCreateBookmakTags = /* GraphQL */ `
-  subscription OnCreateBookmakTags {
-    onCreateBookmakTags {
+export const onCreateBookmarkTag = /* GraphQL */ `
+  subscription OnCreateBookmarkTag {
+    onCreateBookmarkTag {
       id
       bookmarkID
       tagID
@@ -238,6 +274,21 @@ export const onCreateBookmakTags = /* GraphQL */ `
             id
             bookmarkID
             tagID
+            bookmark {
+              url
+              title
+              comment
+              iconUrl
+              dead
+              type
+              createdAt
+              updatedAt
+            }
+            tag {
+              id
+              createdAt
+              updatedAt
+            }
             createdAt
             updatedAt
           }
@@ -254,6 +305,21 @@ export const onCreateBookmakTags = /* GraphQL */ `
             id
             bookmarkID
             tagID
+            bookmark {
+              url
+              title
+              comment
+              iconUrl
+              dead
+              type
+              createdAt
+              updatedAt
+            }
+            tag {
+              id
+              createdAt
+              updatedAt
+            }
             createdAt
             updatedAt
           }
@@ -267,9 +333,9 @@ export const onCreateBookmakTags = /* GraphQL */ `
     }
   }
 `;
-export const onUpdateBookmakTags = /* GraphQL */ `
-  subscription OnUpdateBookmakTags {
-    onUpdateBookmakTags {
+export const onUpdateBookmarkTag = /* GraphQL */ `
+  subscription OnUpdateBookmarkTag {
+    onUpdateBookmarkTag {
       id
       bookmarkID
       tagID
@@ -284,6 +350,21 @@ export const onUpdateBookmakTags = /* GraphQL */ `
             id
             bookmarkID
             tagID
+            bookmark {
+              url
+              title
+              comment
+              iconUrl
+              dead
+              type
+              createdAt
+              updatedAt
+            }
+            tag {
+              id
+              createdAt
+              updatedAt
+            }
             createdAt
             updatedAt
           }
@@ -300,6 +381,21 @@ export const onUpdateBookmakTags = /* GraphQL */ `
             id
             bookmarkID
             tagID
+            bookmark {
+              url
+              title
+              comment
+              iconUrl
+              dead
+              type
+              createdAt
+              updatedAt
+            }
+            tag {
+              id
+              createdAt
+              updatedAt
+            }
             createdAt
             updatedAt
           }
@@ -313,9 +409,9 @@ export const onUpdateBookmakTags = /* GraphQL */ `
     }
   }
 `;
-export const onDeleteBookmakTags = /* GraphQL */ `
-  subscription OnDeleteBookmakTags {
-    onDeleteBookmakTags {
+export const onDeleteBookmarkTag = /* GraphQL */ `
+  subscription OnDeleteBookmarkTag {
+    onDeleteBookmarkTag {
       id
       bookmarkID
       tagID
@@ -330,6 +426,21 @@ export const onDeleteBookmakTags = /* GraphQL */ `
             id
             bookmarkID
             tagID
+            bookmark {
+              url
+              title
+              comment
+              iconUrl
+              dead
+              type
+              createdAt
+              updatedAt
+            }
+            tag {
+              id
+              createdAt
+              updatedAt
+            }
             createdAt
             updatedAt
           }
@@ -346,6 +457,21 @@ export const onDeleteBookmakTags = /* GraphQL */ `
             id
             bookmarkID
             tagID
+            bookmark {
+              url
+              title
+              comment
+              iconUrl
+              dead
+              type
+              createdAt
+              updatedAt
+            }
+            tag {
+              id
+              createdAt
+              updatedAt
+            }
             createdAt
             updatedAt
           }

@@ -1,7 +1,8 @@
-import { Alert, Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField } from '@mui/material'
+import { Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField } from '@mui/material'
 import { ChallengeName } from 'amazon-cognito-identity-js'
 import { useState } from 'react'
 import { useAuth } from '../context/AuthContext'
+import { ErrorBanner } from './ErrorBanner'
 
 interface LoginDialogProps {
   open: boolean
@@ -79,7 +80,6 @@ export const LoginDialog = ({ open, handleClose, onLoggedIn }: LoginDialogProps)
           onChange={(e) => setUsername(e.target.value)}
         />
         <TextField
-          autoFocus
           id="password"
           label="Password"
           value={password}
@@ -89,9 +89,7 @@ export const LoginDialog = ({ open, handleClose, onLoggedIn }: LoginDialogProps)
           margin="dense"
           onChange={(e) => setPassword(e.target.value)}
         />
-        <Alert severity="error" sx={{ display: errorMessage === undefined ? 'none' : 'flex' }}>
-          {errorMessage}
-        </Alert>
+        <ErrorBanner errorMessage={errorMessage} />
       </DialogContent>
       <DialogActions>
         <Button variant="outlined" color="primary" onClick={handleClose}>
@@ -123,9 +121,7 @@ export const LoginDialog = ({ open, handleClose, onLoggedIn }: LoginDialogProps)
           margin="dense"
           onChange={(e) => setNewPassword(e.target.value)}
         />
-        <Alert severity="error" sx={{ display: errorMessage === undefined ? 'none' : 'flex' }}>
-          {errorMessage}
-        </Alert>
+        <ErrorBanner errorMessage={errorMessage} />
       </DialogContent>
       <DialogActions>
         <Button variant="outlined" color="primary" onClick={handleClose}>

@@ -80,20 +80,20 @@ export type Bookmark = {
   comment: string,
   iconUrl?: string | null,
   dead: boolean,
-  tags?: ModelBookmakTagsConnection | null,
+  tags?: ModelBookmarkTagConnection | null,
   type: string,
   createdAt: string,
   updatedAt: string,
 };
 
-export type ModelBookmakTagsConnection = {
-  __typename: "ModelBookmakTagsConnection",
-  items:  Array<BookmakTags | null >,
+export type ModelBookmarkTagConnection = {
+  __typename: "ModelBookmarkTagConnection",
+  items:  Array<BookmarkTag | null >,
   nextToken?: string | null,
 };
 
-export type BookmakTags = {
-  __typename: "BookmakTags",
+export type BookmarkTag = {
+  __typename: "BookmarkTag",
   id: string,
   bookmarkID: string,
   tagID: string,
@@ -106,7 +106,7 @@ export type BookmakTags = {
 export type Tag = {
   __typename: "Tag",
   id: string,
-  bookmarks?: ModelBookmakTagsConnection | null,
+  bookmarks?: ModelBookmarkTagConnection | null,
   createdAt: string,
   updatedAt: string,
 };
@@ -144,18 +144,18 @@ export type DeleteTagInput = {
   id: string,
 };
 
-export type CreateBookmakTagsInput = {
+export type CreateBookmarkTagInput = {
   id?: string | null,
   bookmarkID: string,
   tagID: string,
 };
 
-export type ModelBookmakTagsConditionInput = {
+export type ModelBookmarkTagConditionInput = {
   bookmarkID?: ModelIDInput | null,
   tagID?: ModelIDInput | null,
-  and?: Array< ModelBookmakTagsConditionInput | null > | null,
-  or?: Array< ModelBookmakTagsConditionInput | null > | null,
-  not?: ModelBookmakTagsConditionInput | null,
+  and?: Array< ModelBookmarkTagConditionInput | null > | null,
+  or?: Array< ModelBookmarkTagConditionInput | null > | null,
+  not?: ModelBookmarkTagConditionInput | null,
 };
 
 export type ModelIDInput = {
@@ -174,13 +174,13 @@ export type ModelIDInput = {
   size?: ModelSizeInput | null,
 };
 
-export type UpdateBookmakTagsInput = {
+export type UpdateBookmarkTagInput = {
   id: string,
   bookmarkID?: string | null,
   tagID?: string | null,
 };
 
-export type DeleteBookmakTagsInput = {
+export type DeleteBookmarkTagInput = {
   id: string,
 };
 
@@ -233,13 +233,13 @@ export type ModelTagConnection = {
   nextToken?: string | null,
 };
 
-export type ModelBookmakTagsFilterInput = {
+export type ModelBookmarkTagFilterInput = {
   id?: ModelIDInput | null,
   bookmarkID?: ModelIDInput | null,
   tagID?: ModelIDInput | null,
-  and?: Array< ModelBookmakTagsFilterInput | null > | null,
-  or?: Array< ModelBookmakTagsFilterInput | null > | null,
-  not?: ModelBookmakTagsFilterInput | null,
+  and?: Array< ModelBookmarkTagFilterInput | null > | null,
+  or?: Array< ModelBookmarkTagFilterInput | null > | null,
+  not?: ModelBookmarkTagFilterInput | null,
 };
 
 export type CreateBookmarkMutationVariables = {
@@ -256,9 +256,9 @@ export type CreateBookmarkMutation = {
     iconUrl?: string | null,
     dead: boolean,
     tags?:  {
-      __typename: "ModelBookmakTagsConnection",
+      __typename: "ModelBookmarkTagConnection",
       items:  Array< {
-        __typename: "BookmakTags",
+        __typename: "BookmarkTag",
         id: string,
         bookmarkID: string,
         tagID: string,
@@ -269,6 +269,10 @@ export type CreateBookmarkMutation = {
           comment: string,
           iconUrl?: string | null,
           dead: boolean,
+          tags?:  {
+            __typename: "ModelBookmarkTagConnection",
+            nextToken?: string | null,
+          } | null,
           type: string,
           createdAt: string,
           updatedAt: string,
@@ -276,6 +280,10 @@ export type CreateBookmarkMutation = {
         tag:  {
           __typename: "Tag",
           id: string,
+          bookmarks?:  {
+            __typename: "ModelBookmarkTagConnection",
+            nextToken?: string | null,
+          } | null,
           createdAt: string,
           updatedAt: string,
         },
@@ -304,9 +312,9 @@ export type UpdateBookmarkMutation = {
     iconUrl?: string | null,
     dead: boolean,
     tags?:  {
-      __typename: "ModelBookmakTagsConnection",
+      __typename: "ModelBookmarkTagConnection",
       items:  Array< {
-        __typename: "BookmakTags",
+        __typename: "BookmarkTag",
         id: string,
         bookmarkID: string,
         tagID: string,
@@ -317,6 +325,10 @@ export type UpdateBookmarkMutation = {
           comment: string,
           iconUrl?: string | null,
           dead: boolean,
+          tags?:  {
+            __typename: "ModelBookmarkTagConnection",
+            nextToken?: string | null,
+          } | null,
           type: string,
           createdAt: string,
           updatedAt: string,
@@ -324,6 +336,10 @@ export type UpdateBookmarkMutation = {
         tag:  {
           __typename: "Tag",
           id: string,
+          bookmarks?:  {
+            __typename: "ModelBookmarkTagConnection",
+            nextToken?: string | null,
+          } | null,
           createdAt: string,
           updatedAt: string,
         },
@@ -352,9 +368,9 @@ export type DeleteBookmarkMutation = {
     iconUrl?: string | null,
     dead: boolean,
     tags?:  {
-      __typename: "ModelBookmakTagsConnection",
+      __typename: "ModelBookmarkTagConnection",
       items:  Array< {
-        __typename: "BookmakTags",
+        __typename: "BookmarkTag",
         id: string,
         bookmarkID: string,
         tagID: string,
@@ -365,6 +381,10 @@ export type DeleteBookmarkMutation = {
           comment: string,
           iconUrl?: string | null,
           dead: boolean,
+          tags?:  {
+            __typename: "ModelBookmarkTagConnection",
+            nextToken?: string | null,
+          } | null,
           type: string,
           createdAt: string,
           updatedAt: string,
@@ -372,6 +392,10 @@ export type DeleteBookmarkMutation = {
         tag:  {
           __typename: "Tag",
           id: string,
+          bookmarks?:  {
+            __typename: "ModelBookmarkTagConnection",
+            nextToken?: string | null,
+          } | null,
           createdAt: string,
           updatedAt: string,
         },
@@ -396,9 +420,9 @@ export type CreateTagMutation = {
     __typename: "Tag",
     id: string,
     bookmarks?:  {
-      __typename: "ModelBookmakTagsConnection",
+      __typename: "ModelBookmarkTagConnection",
       items:  Array< {
-        __typename: "BookmakTags",
+        __typename: "BookmarkTag",
         id: string,
         bookmarkID: string,
         tagID: string,
@@ -409,6 +433,10 @@ export type CreateTagMutation = {
           comment: string,
           iconUrl?: string | null,
           dead: boolean,
+          tags?:  {
+            __typename: "ModelBookmarkTagConnection",
+            nextToken?: string | null,
+          } | null,
           type: string,
           createdAt: string,
           updatedAt: string,
@@ -416,6 +444,10 @@ export type CreateTagMutation = {
         tag:  {
           __typename: "Tag",
           id: string,
+          bookmarks?:  {
+            __typename: "ModelBookmarkTagConnection",
+            nextToken?: string | null,
+          } | null,
           createdAt: string,
           updatedAt: string,
         },
@@ -439,9 +471,9 @@ export type UpdateTagMutation = {
     __typename: "Tag",
     id: string,
     bookmarks?:  {
-      __typename: "ModelBookmakTagsConnection",
+      __typename: "ModelBookmarkTagConnection",
       items:  Array< {
-        __typename: "BookmakTags",
+        __typename: "BookmarkTag",
         id: string,
         bookmarkID: string,
         tagID: string,
@@ -452,6 +484,10 @@ export type UpdateTagMutation = {
           comment: string,
           iconUrl?: string | null,
           dead: boolean,
+          tags?:  {
+            __typename: "ModelBookmarkTagConnection",
+            nextToken?: string | null,
+          } | null,
           type: string,
           createdAt: string,
           updatedAt: string,
@@ -459,6 +495,10 @@ export type UpdateTagMutation = {
         tag:  {
           __typename: "Tag",
           id: string,
+          bookmarks?:  {
+            __typename: "ModelBookmarkTagConnection",
+            nextToken?: string | null,
+          } | null,
           createdAt: string,
           updatedAt: string,
         },
@@ -482,9 +522,9 @@ export type DeleteTagMutation = {
     __typename: "Tag",
     id: string,
     bookmarks?:  {
-      __typename: "ModelBookmakTagsConnection",
+      __typename: "ModelBookmarkTagConnection",
       items:  Array< {
-        __typename: "BookmakTags",
+        __typename: "BookmarkTag",
         id: string,
         bookmarkID: string,
         tagID: string,
@@ -495,6 +535,10 @@ export type DeleteTagMutation = {
           comment: string,
           iconUrl?: string | null,
           dead: boolean,
+          tags?:  {
+            __typename: "ModelBookmarkTagConnection",
+            nextToken?: string | null,
+          } | null,
           type: string,
           createdAt: string,
           updatedAt: string,
@@ -502,6 +546,10 @@ export type DeleteTagMutation = {
         tag:  {
           __typename: "Tag",
           id: string,
+          bookmarks?:  {
+            __typename: "ModelBookmarkTagConnection",
+            nextToken?: string | null,
+          } | null,
           createdAt: string,
           updatedAt: string,
         },
@@ -515,14 +563,14 @@ export type DeleteTagMutation = {
   } | null,
 };
 
-export type CreateBookmakTagsMutationVariables = {
-  input: CreateBookmakTagsInput,
-  condition?: ModelBookmakTagsConditionInput | null,
+export type CreateBookmarkTagMutationVariables = {
+  input: CreateBookmarkTagInput,
+  condition?: ModelBookmarkTagConditionInput | null,
 };
 
-export type CreateBookmakTagsMutation = {
-  createBookmakTags?:  {
-    __typename: "BookmakTags",
+export type CreateBookmarkTagMutation = {
+  createBookmarkTag?:  {
+    __typename: "BookmarkTag",
     id: string,
     bookmarkID: string,
     tagID: string,
@@ -534,12 +582,29 @@ export type CreateBookmakTagsMutation = {
       iconUrl?: string | null,
       dead: boolean,
       tags?:  {
-        __typename: "ModelBookmakTagsConnection",
+        __typename: "ModelBookmarkTagConnection",
         items:  Array< {
-          __typename: "BookmakTags",
+          __typename: "BookmarkTag",
           id: string,
           bookmarkID: string,
           tagID: string,
+          bookmark:  {
+            __typename: "Bookmark",
+            url: string,
+            title: string,
+            comment: string,
+            iconUrl?: string | null,
+            dead: boolean,
+            type: string,
+            createdAt: string,
+            updatedAt: string,
+          },
+          tag:  {
+            __typename: "Tag",
+            id: string,
+            createdAt: string,
+            updatedAt: string,
+          },
           createdAt: string,
           updatedAt: string,
         } | null >,
@@ -553,12 +618,29 @@ export type CreateBookmakTagsMutation = {
       __typename: "Tag",
       id: string,
       bookmarks?:  {
-        __typename: "ModelBookmakTagsConnection",
+        __typename: "ModelBookmarkTagConnection",
         items:  Array< {
-          __typename: "BookmakTags",
+          __typename: "BookmarkTag",
           id: string,
           bookmarkID: string,
           tagID: string,
+          bookmark:  {
+            __typename: "Bookmark",
+            url: string,
+            title: string,
+            comment: string,
+            iconUrl?: string | null,
+            dead: boolean,
+            type: string,
+            createdAt: string,
+            updatedAt: string,
+          },
+          tag:  {
+            __typename: "Tag",
+            id: string,
+            createdAt: string,
+            updatedAt: string,
+          },
           createdAt: string,
           updatedAt: string,
         } | null >,
@@ -572,14 +654,14 @@ export type CreateBookmakTagsMutation = {
   } | null,
 };
 
-export type UpdateBookmakTagsMutationVariables = {
-  input: UpdateBookmakTagsInput,
-  condition?: ModelBookmakTagsConditionInput | null,
+export type UpdateBookmarkTagMutationVariables = {
+  input: UpdateBookmarkTagInput,
+  condition?: ModelBookmarkTagConditionInput | null,
 };
 
-export type UpdateBookmakTagsMutation = {
-  updateBookmakTags?:  {
-    __typename: "BookmakTags",
+export type UpdateBookmarkTagMutation = {
+  updateBookmarkTag?:  {
+    __typename: "BookmarkTag",
     id: string,
     bookmarkID: string,
     tagID: string,
@@ -591,12 +673,29 @@ export type UpdateBookmakTagsMutation = {
       iconUrl?: string | null,
       dead: boolean,
       tags?:  {
-        __typename: "ModelBookmakTagsConnection",
+        __typename: "ModelBookmarkTagConnection",
         items:  Array< {
-          __typename: "BookmakTags",
+          __typename: "BookmarkTag",
           id: string,
           bookmarkID: string,
           tagID: string,
+          bookmark:  {
+            __typename: "Bookmark",
+            url: string,
+            title: string,
+            comment: string,
+            iconUrl?: string | null,
+            dead: boolean,
+            type: string,
+            createdAt: string,
+            updatedAt: string,
+          },
+          tag:  {
+            __typename: "Tag",
+            id: string,
+            createdAt: string,
+            updatedAt: string,
+          },
           createdAt: string,
           updatedAt: string,
         } | null >,
@@ -610,12 +709,29 @@ export type UpdateBookmakTagsMutation = {
       __typename: "Tag",
       id: string,
       bookmarks?:  {
-        __typename: "ModelBookmakTagsConnection",
+        __typename: "ModelBookmarkTagConnection",
         items:  Array< {
-          __typename: "BookmakTags",
+          __typename: "BookmarkTag",
           id: string,
           bookmarkID: string,
           tagID: string,
+          bookmark:  {
+            __typename: "Bookmark",
+            url: string,
+            title: string,
+            comment: string,
+            iconUrl?: string | null,
+            dead: boolean,
+            type: string,
+            createdAt: string,
+            updatedAt: string,
+          },
+          tag:  {
+            __typename: "Tag",
+            id: string,
+            createdAt: string,
+            updatedAt: string,
+          },
           createdAt: string,
           updatedAt: string,
         } | null >,
@@ -629,14 +745,14 @@ export type UpdateBookmakTagsMutation = {
   } | null,
 };
 
-export type DeleteBookmakTagsMutationVariables = {
-  input: DeleteBookmakTagsInput,
-  condition?: ModelBookmakTagsConditionInput | null,
+export type DeleteBookmarkTagMutationVariables = {
+  input: DeleteBookmarkTagInput,
+  condition?: ModelBookmarkTagConditionInput | null,
 };
 
-export type DeleteBookmakTagsMutation = {
-  deleteBookmakTags?:  {
-    __typename: "BookmakTags",
+export type DeleteBookmarkTagMutation = {
+  deleteBookmarkTag?:  {
+    __typename: "BookmarkTag",
     id: string,
     bookmarkID: string,
     tagID: string,
@@ -648,12 +764,29 @@ export type DeleteBookmakTagsMutation = {
       iconUrl?: string | null,
       dead: boolean,
       tags?:  {
-        __typename: "ModelBookmakTagsConnection",
+        __typename: "ModelBookmarkTagConnection",
         items:  Array< {
-          __typename: "BookmakTags",
+          __typename: "BookmarkTag",
           id: string,
           bookmarkID: string,
           tagID: string,
+          bookmark:  {
+            __typename: "Bookmark",
+            url: string,
+            title: string,
+            comment: string,
+            iconUrl?: string | null,
+            dead: boolean,
+            type: string,
+            createdAt: string,
+            updatedAt: string,
+          },
+          tag:  {
+            __typename: "Tag",
+            id: string,
+            createdAt: string,
+            updatedAt: string,
+          },
           createdAt: string,
           updatedAt: string,
         } | null >,
@@ -667,12 +800,29 @@ export type DeleteBookmakTagsMutation = {
       __typename: "Tag",
       id: string,
       bookmarks?:  {
-        __typename: "ModelBookmakTagsConnection",
+        __typename: "ModelBookmarkTagConnection",
         items:  Array< {
-          __typename: "BookmakTags",
+          __typename: "BookmarkTag",
           id: string,
           bookmarkID: string,
           tagID: string,
+          bookmark:  {
+            __typename: "Bookmark",
+            url: string,
+            title: string,
+            comment: string,
+            iconUrl?: string | null,
+            dead: boolean,
+            type: string,
+            createdAt: string,
+            updatedAt: string,
+          },
+          tag:  {
+            __typename: "Tag",
+            id: string,
+            createdAt: string,
+            updatedAt: string,
+          },
           createdAt: string,
           updatedAt: string,
         } | null >,
@@ -699,9 +849,9 @@ export type GetBookmarkQuery = {
     iconUrl?: string | null,
     dead: boolean,
     tags?:  {
-      __typename: "ModelBookmakTagsConnection",
+      __typename: "ModelBookmarkTagConnection",
       items:  Array< {
-        __typename: "BookmakTags",
+        __typename: "BookmarkTag",
         id: string,
         bookmarkID: string,
         tagID: string,
@@ -712,6 +862,10 @@ export type GetBookmarkQuery = {
           comment: string,
           iconUrl?: string | null,
           dead: boolean,
+          tags?:  {
+            __typename: "ModelBookmarkTagConnection",
+            nextToken?: string | null,
+          } | null,
           type: string,
           createdAt: string,
           updatedAt: string,
@@ -719,6 +873,10 @@ export type GetBookmarkQuery = {
         tag:  {
           __typename: "Tag",
           id: string,
+          bookmarks?:  {
+            __typename: "ModelBookmarkTagConnection",
+            nextToken?: string | null,
+          } | null,
           createdAt: string,
           updatedAt: string,
         },
@@ -752,12 +910,29 @@ export type ListBookmarksQuery = {
       iconUrl?: string | null,
       dead: boolean,
       tags?:  {
-        __typename: "ModelBookmakTagsConnection",
+        __typename: "ModelBookmarkTagConnection",
         items:  Array< {
-          __typename: "BookmakTags",
+          __typename: "BookmarkTag",
           id: string,
           bookmarkID: string,
           tagID: string,
+          bookmark:  {
+            __typename: "Bookmark",
+            url: string,
+            title: string,
+            comment: string,
+            iconUrl?: string | null,
+            dead: boolean,
+            type: string,
+            createdAt: string,
+            updatedAt: string,
+          },
+          tag:  {
+            __typename: "Tag",
+            id: string,
+            createdAt: string,
+            updatedAt: string,
+          },
           createdAt: string,
           updatedAt: string,
         } | null >,
@@ -791,12 +966,29 @@ export type ListBookmarksOrderByCreatedAtQuery = {
       iconUrl?: string | null,
       dead: boolean,
       tags?:  {
-        __typename: "ModelBookmakTagsConnection",
+        __typename: "ModelBookmarkTagConnection",
         items:  Array< {
-          __typename: "BookmakTags",
+          __typename: "BookmarkTag",
           id: string,
           bookmarkID: string,
           tagID: string,
+          bookmark:  {
+            __typename: "Bookmark",
+            url: string,
+            title: string,
+            comment: string,
+            iconUrl?: string | null,
+            dead: boolean,
+            type: string,
+            createdAt: string,
+            updatedAt: string,
+          },
+          tag:  {
+            __typename: "Tag",
+            id: string,
+            createdAt: string,
+            updatedAt: string,
+          },
           createdAt: string,
           updatedAt: string,
         } | null >,
@@ -819,9 +1011,9 @@ export type GetTagQuery = {
     __typename: "Tag",
     id: string,
     bookmarks?:  {
-      __typename: "ModelBookmakTagsConnection",
+      __typename: "ModelBookmarkTagConnection",
       items:  Array< {
-        __typename: "BookmakTags",
+        __typename: "BookmarkTag",
         id: string,
         bookmarkID: string,
         tagID: string,
@@ -832,6 +1024,10 @@ export type GetTagQuery = {
           comment: string,
           iconUrl?: string | null,
           dead: boolean,
+          tags?:  {
+            __typename: "ModelBookmarkTagConnection",
+            nextToken?: string | null,
+          } | null,
           type: string,
           createdAt: string,
           updatedAt: string,
@@ -839,6 +1035,10 @@ export type GetTagQuery = {
         tag:  {
           __typename: "Tag",
           id: string,
+          bookmarks?:  {
+            __typename: "ModelBookmarkTagConnection",
+            nextToken?: string | null,
+          } | null,
           createdAt: string,
           updatedAt: string,
         },
@@ -865,12 +1065,29 @@ export type ListTagsQuery = {
       __typename: "Tag",
       id: string,
       bookmarks?:  {
-        __typename: "ModelBookmakTagsConnection",
+        __typename: "ModelBookmarkTagConnection",
         items:  Array< {
-          __typename: "BookmakTags",
+          __typename: "BookmarkTag",
           id: string,
           bookmarkID: string,
           tagID: string,
+          bookmark:  {
+            __typename: "Bookmark",
+            url: string,
+            title: string,
+            comment: string,
+            iconUrl?: string | null,
+            dead: boolean,
+            type: string,
+            createdAt: string,
+            updatedAt: string,
+          },
+          tag:  {
+            __typename: "Tag",
+            id: string,
+            createdAt: string,
+            updatedAt: string,
+          },
           createdAt: string,
           updatedAt: string,
         } | null >,
@@ -883,13 +1100,13 @@ export type ListTagsQuery = {
   } | null,
 };
 
-export type GetBookmakTagsQueryVariables = {
+export type GetBookmarkTagQueryVariables = {
   id: string,
 };
 
-export type GetBookmakTagsQuery = {
-  getBookmakTags?:  {
-    __typename: "BookmakTags",
+export type GetBookmarkTagQuery = {
+  getBookmarkTag?:  {
+    __typename: "BookmarkTag",
     id: string,
     bookmarkID: string,
     tagID: string,
@@ -901,12 +1118,29 @@ export type GetBookmakTagsQuery = {
       iconUrl?: string | null,
       dead: boolean,
       tags?:  {
-        __typename: "ModelBookmakTagsConnection",
+        __typename: "ModelBookmarkTagConnection",
         items:  Array< {
-          __typename: "BookmakTags",
+          __typename: "BookmarkTag",
           id: string,
           bookmarkID: string,
           tagID: string,
+          bookmark:  {
+            __typename: "Bookmark",
+            url: string,
+            title: string,
+            comment: string,
+            iconUrl?: string | null,
+            dead: boolean,
+            type: string,
+            createdAt: string,
+            updatedAt: string,
+          },
+          tag:  {
+            __typename: "Tag",
+            id: string,
+            createdAt: string,
+            updatedAt: string,
+          },
           createdAt: string,
           updatedAt: string,
         } | null >,
@@ -920,12 +1154,29 @@ export type GetBookmakTagsQuery = {
       __typename: "Tag",
       id: string,
       bookmarks?:  {
-        __typename: "ModelBookmakTagsConnection",
+        __typename: "ModelBookmarkTagConnection",
         items:  Array< {
-          __typename: "BookmakTags",
+          __typename: "BookmarkTag",
           id: string,
           bookmarkID: string,
           tagID: string,
+          bookmark:  {
+            __typename: "Bookmark",
+            url: string,
+            title: string,
+            comment: string,
+            iconUrl?: string | null,
+            dead: boolean,
+            type: string,
+            createdAt: string,
+            updatedAt: string,
+          },
+          tag:  {
+            __typename: "Tag",
+            id: string,
+            createdAt: string,
+            updatedAt: string,
+          },
           createdAt: string,
           updatedAt: string,
         } | null >,
@@ -939,17 +1190,17 @@ export type GetBookmakTagsQuery = {
   } | null,
 };
 
-export type ListBookmakTagsQueryVariables = {
-  filter?: ModelBookmakTagsFilterInput | null,
+export type ListBookmarkTagsQueryVariables = {
+  filter?: ModelBookmarkTagFilterInput | null,
   limit?: number | null,
   nextToken?: string | null,
 };
 
-export type ListBookmakTagsQuery = {
-  listBookmakTags?:  {
-    __typename: "ModelBookmakTagsConnection",
+export type ListBookmarkTagsQuery = {
+  listBookmarkTags?:  {
+    __typename: "ModelBookmarkTagConnection",
     items:  Array< {
-      __typename: "BookmakTags",
+      __typename: "BookmarkTag",
       id: string,
       bookmarkID: string,
       tagID: string,
@@ -961,7 +1212,15 @@ export type ListBookmakTagsQuery = {
         iconUrl?: string | null,
         dead: boolean,
         tags?:  {
-          __typename: "ModelBookmakTagsConnection",
+          __typename: "ModelBookmarkTagConnection",
+          items:  Array< {
+            __typename: "BookmarkTag",
+            id: string,
+            bookmarkID: string,
+            tagID: string,
+            createdAt: string,
+            updatedAt: string,
+          } | null >,
           nextToken?: string | null,
         } | null,
         type: string,
@@ -972,7 +1231,15 @@ export type ListBookmakTagsQuery = {
         __typename: "Tag",
         id: string,
         bookmarks?:  {
-          __typename: "ModelBookmakTagsConnection",
+          __typename: "ModelBookmarkTagConnection",
+          items:  Array< {
+            __typename: "BookmarkTag",
+            id: string,
+            bookmarkID: string,
+            tagID: string,
+            createdAt: string,
+            updatedAt: string,
+          } | null >,
           nextToken?: string | null,
         } | null,
         createdAt: string,
@@ -994,9 +1261,9 @@ export type OnCreateBookmarkSubscription = {
     iconUrl?: string | null,
     dead: boolean,
     tags?:  {
-      __typename: "ModelBookmakTagsConnection",
+      __typename: "ModelBookmarkTagConnection",
       items:  Array< {
-        __typename: "BookmakTags",
+        __typename: "BookmarkTag",
         id: string,
         bookmarkID: string,
         tagID: string,
@@ -1007,6 +1274,10 @@ export type OnCreateBookmarkSubscription = {
           comment: string,
           iconUrl?: string | null,
           dead: boolean,
+          tags?:  {
+            __typename: "ModelBookmarkTagConnection",
+            nextToken?: string | null,
+          } | null,
           type: string,
           createdAt: string,
           updatedAt: string,
@@ -1014,6 +1285,10 @@ export type OnCreateBookmarkSubscription = {
         tag:  {
           __typename: "Tag",
           id: string,
+          bookmarks?:  {
+            __typename: "ModelBookmarkTagConnection",
+            nextToken?: string | null,
+          } | null,
           createdAt: string,
           updatedAt: string,
         },
@@ -1037,9 +1312,9 @@ export type OnUpdateBookmarkSubscription = {
     iconUrl?: string | null,
     dead: boolean,
     tags?:  {
-      __typename: "ModelBookmakTagsConnection",
+      __typename: "ModelBookmarkTagConnection",
       items:  Array< {
-        __typename: "BookmakTags",
+        __typename: "BookmarkTag",
         id: string,
         bookmarkID: string,
         tagID: string,
@@ -1050,6 +1325,10 @@ export type OnUpdateBookmarkSubscription = {
           comment: string,
           iconUrl?: string | null,
           dead: boolean,
+          tags?:  {
+            __typename: "ModelBookmarkTagConnection",
+            nextToken?: string | null,
+          } | null,
           type: string,
           createdAt: string,
           updatedAt: string,
@@ -1057,6 +1336,10 @@ export type OnUpdateBookmarkSubscription = {
         tag:  {
           __typename: "Tag",
           id: string,
+          bookmarks?:  {
+            __typename: "ModelBookmarkTagConnection",
+            nextToken?: string | null,
+          } | null,
           createdAt: string,
           updatedAt: string,
         },
@@ -1080,9 +1363,9 @@ export type OnDeleteBookmarkSubscription = {
     iconUrl?: string | null,
     dead: boolean,
     tags?:  {
-      __typename: "ModelBookmakTagsConnection",
+      __typename: "ModelBookmarkTagConnection",
       items:  Array< {
-        __typename: "BookmakTags",
+        __typename: "BookmarkTag",
         id: string,
         bookmarkID: string,
         tagID: string,
@@ -1093,6 +1376,10 @@ export type OnDeleteBookmarkSubscription = {
           comment: string,
           iconUrl?: string | null,
           dead: boolean,
+          tags?:  {
+            __typename: "ModelBookmarkTagConnection",
+            nextToken?: string | null,
+          } | null,
           type: string,
           createdAt: string,
           updatedAt: string,
@@ -1100,6 +1387,10 @@ export type OnDeleteBookmarkSubscription = {
         tag:  {
           __typename: "Tag",
           id: string,
+          bookmarks?:  {
+            __typename: "ModelBookmarkTagConnection",
+            nextToken?: string | null,
+          } | null,
           createdAt: string,
           updatedAt: string,
         },
@@ -1119,9 +1410,9 @@ export type OnCreateTagSubscription = {
     __typename: "Tag",
     id: string,
     bookmarks?:  {
-      __typename: "ModelBookmakTagsConnection",
+      __typename: "ModelBookmarkTagConnection",
       items:  Array< {
-        __typename: "BookmakTags",
+        __typename: "BookmarkTag",
         id: string,
         bookmarkID: string,
         tagID: string,
@@ -1132,6 +1423,10 @@ export type OnCreateTagSubscription = {
           comment: string,
           iconUrl?: string | null,
           dead: boolean,
+          tags?:  {
+            __typename: "ModelBookmarkTagConnection",
+            nextToken?: string | null,
+          } | null,
           type: string,
           createdAt: string,
           updatedAt: string,
@@ -1139,6 +1434,10 @@ export type OnCreateTagSubscription = {
         tag:  {
           __typename: "Tag",
           id: string,
+          bookmarks?:  {
+            __typename: "ModelBookmarkTagConnection",
+            nextToken?: string | null,
+          } | null,
           createdAt: string,
           updatedAt: string,
         },
@@ -1157,9 +1456,9 @@ export type OnUpdateTagSubscription = {
     __typename: "Tag",
     id: string,
     bookmarks?:  {
-      __typename: "ModelBookmakTagsConnection",
+      __typename: "ModelBookmarkTagConnection",
       items:  Array< {
-        __typename: "BookmakTags",
+        __typename: "BookmarkTag",
         id: string,
         bookmarkID: string,
         tagID: string,
@@ -1170,6 +1469,10 @@ export type OnUpdateTagSubscription = {
           comment: string,
           iconUrl?: string | null,
           dead: boolean,
+          tags?:  {
+            __typename: "ModelBookmarkTagConnection",
+            nextToken?: string | null,
+          } | null,
           type: string,
           createdAt: string,
           updatedAt: string,
@@ -1177,6 +1480,10 @@ export type OnUpdateTagSubscription = {
         tag:  {
           __typename: "Tag",
           id: string,
+          bookmarks?:  {
+            __typename: "ModelBookmarkTagConnection",
+            nextToken?: string | null,
+          } | null,
           createdAt: string,
           updatedAt: string,
         },
@@ -1195,9 +1502,9 @@ export type OnDeleteTagSubscription = {
     __typename: "Tag",
     id: string,
     bookmarks?:  {
-      __typename: "ModelBookmakTagsConnection",
+      __typename: "ModelBookmarkTagConnection",
       items:  Array< {
-        __typename: "BookmakTags",
+        __typename: "BookmarkTag",
         id: string,
         bookmarkID: string,
         tagID: string,
@@ -1208,6 +1515,10 @@ export type OnDeleteTagSubscription = {
           comment: string,
           iconUrl?: string | null,
           dead: boolean,
+          tags?:  {
+            __typename: "ModelBookmarkTagConnection",
+            nextToken?: string | null,
+          } | null,
           type: string,
           createdAt: string,
           updatedAt: string,
@@ -1215,6 +1526,10 @@ export type OnDeleteTagSubscription = {
         tag:  {
           __typename: "Tag",
           id: string,
+          bookmarks?:  {
+            __typename: "ModelBookmarkTagConnection",
+            nextToken?: string | null,
+          } | null,
           createdAt: string,
           updatedAt: string,
         },
@@ -1228,9 +1543,9 @@ export type OnDeleteTagSubscription = {
   } | null,
 };
 
-export type OnCreateBookmakTagsSubscription = {
-  onCreateBookmakTags?:  {
-    __typename: "BookmakTags",
+export type OnCreateBookmarkTagSubscription = {
+  onCreateBookmarkTag?:  {
+    __typename: "BookmarkTag",
     id: string,
     bookmarkID: string,
     tagID: string,
@@ -1242,12 +1557,29 @@ export type OnCreateBookmakTagsSubscription = {
       iconUrl?: string | null,
       dead: boolean,
       tags?:  {
-        __typename: "ModelBookmakTagsConnection",
+        __typename: "ModelBookmarkTagConnection",
         items:  Array< {
-          __typename: "BookmakTags",
+          __typename: "BookmarkTag",
           id: string,
           bookmarkID: string,
           tagID: string,
+          bookmark:  {
+            __typename: "Bookmark",
+            url: string,
+            title: string,
+            comment: string,
+            iconUrl?: string | null,
+            dead: boolean,
+            type: string,
+            createdAt: string,
+            updatedAt: string,
+          },
+          tag:  {
+            __typename: "Tag",
+            id: string,
+            createdAt: string,
+            updatedAt: string,
+          },
           createdAt: string,
           updatedAt: string,
         } | null >,
@@ -1261,12 +1593,29 @@ export type OnCreateBookmakTagsSubscription = {
       __typename: "Tag",
       id: string,
       bookmarks?:  {
-        __typename: "ModelBookmakTagsConnection",
+        __typename: "ModelBookmarkTagConnection",
         items:  Array< {
-          __typename: "BookmakTags",
+          __typename: "BookmarkTag",
           id: string,
           bookmarkID: string,
           tagID: string,
+          bookmark:  {
+            __typename: "Bookmark",
+            url: string,
+            title: string,
+            comment: string,
+            iconUrl?: string | null,
+            dead: boolean,
+            type: string,
+            createdAt: string,
+            updatedAt: string,
+          },
+          tag:  {
+            __typename: "Tag",
+            id: string,
+            createdAt: string,
+            updatedAt: string,
+          },
           createdAt: string,
           updatedAt: string,
         } | null >,
@@ -1280,9 +1629,9 @@ export type OnCreateBookmakTagsSubscription = {
   } | null,
 };
 
-export type OnUpdateBookmakTagsSubscription = {
-  onUpdateBookmakTags?:  {
-    __typename: "BookmakTags",
+export type OnUpdateBookmarkTagSubscription = {
+  onUpdateBookmarkTag?:  {
+    __typename: "BookmarkTag",
     id: string,
     bookmarkID: string,
     tagID: string,
@@ -1294,12 +1643,29 @@ export type OnUpdateBookmakTagsSubscription = {
       iconUrl?: string | null,
       dead: boolean,
       tags?:  {
-        __typename: "ModelBookmakTagsConnection",
+        __typename: "ModelBookmarkTagConnection",
         items:  Array< {
-          __typename: "BookmakTags",
+          __typename: "BookmarkTag",
           id: string,
           bookmarkID: string,
           tagID: string,
+          bookmark:  {
+            __typename: "Bookmark",
+            url: string,
+            title: string,
+            comment: string,
+            iconUrl?: string | null,
+            dead: boolean,
+            type: string,
+            createdAt: string,
+            updatedAt: string,
+          },
+          tag:  {
+            __typename: "Tag",
+            id: string,
+            createdAt: string,
+            updatedAt: string,
+          },
           createdAt: string,
           updatedAt: string,
         } | null >,
@@ -1313,12 +1679,29 @@ export type OnUpdateBookmakTagsSubscription = {
       __typename: "Tag",
       id: string,
       bookmarks?:  {
-        __typename: "ModelBookmakTagsConnection",
+        __typename: "ModelBookmarkTagConnection",
         items:  Array< {
-          __typename: "BookmakTags",
+          __typename: "BookmarkTag",
           id: string,
           bookmarkID: string,
           tagID: string,
+          bookmark:  {
+            __typename: "Bookmark",
+            url: string,
+            title: string,
+            comment: string,
+            iconUrl?: string | null,
+            dead: boolean,
+            type: string,
+            createdAt: string,
+            updatedAt: string,
+          },
+          tag:  {
+            __typename: "Tag",
+            id: string,
+            createdAt: string,
+            updatedAt: string,
+          },
           createdAt: string,
           updatedAt: string,
         } | null >,
@@ -1332,9 +1715,9 @@ export type OnUpdateBookmakTagsSubscription = {
   } | null,
 };
 
-export type OnDeleteBookmakTagsSubscription = {
-  onDeleteBookmakTags?:  {
-    __typename: "BookmakTags",
+export type OnDeleteBookmarkTagSubscription = {
+  onDeleteBookmarkTag?:  {
+    __typename: "BookmarkTag",
     id: string,
     bookmarkID: string,
     tagID: string,
@@ -1346,12 +1729,29 @@ export type OnDeleteBookmakTagsSubscription = {
       iconUrl?: string | null,
       dead: boolean,
       tags?:  {
-        __typename: "ModelBookmakTagsConnection",
+        __typename: "ModelBookmarkTagConnection",
         items:  Array< {
-          __typename: "BookmakTags",
+          __typename: "BookmarkTag",
           id: string,
           bookmarkID: string,
           tagID: string,
+          bookmark:  {
+            __typename: "Bookmark",
+            url: string,
+            title: string,
+            comment: string,
+            iconUrl?: string | null,
+            dead: boolean,
+            type: string,
+            createdAt: string,
+            updatedAt: string,
+          },
+          tag:  {
+            __typename: "Tag",
+            id: string,
+            createdAt: string,
+            updatedAt: string,
+          },
           createdAt: string,
           updatedAt: string,
         } | null >,
@@ -1365,12 +1765,29 @@ export type OnDeleteBookmakTagsSubscription = {
       __typename: "Tag",
       id: string,
       bookmarks?:  {
-        __typename: "ModelBookmakTagsConnection",
+        __typename: "ModelBookmarkTagConnection",
         items:  Array< {
-          __typename: "BookmakTags",
+          __typename: "BookmarkTag",
           id: string,
           bookmarkID: string,
           tagID: string,
+          bookmark:  {
+            __typename: "Bookmark",
+            url: string,
+            title: string,
+            comment: string,
+            iconUrl?: string | null,
+            dead: boolean,
+            type: string,
+            createdAt: string,
+            updatedAt: string,
+          },
+          tag:  {
+            __typename: "Tag",
+            id: string,
+            createdAt: string,
+            updatedAt: string,
+          },
           createdAt: string,
           updatedAt: string,
         } | null >,

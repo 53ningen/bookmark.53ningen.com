@@ -12,7 +12,7 @@ type Bookmark
   comment: String!
   iconUrl: String
   dead: Boolean!
-  tags: [Tag] @manyToMany(relationName: "BookmakTags")
+  tags: [Tag] @manyToMany(relationName: "BookmarkTag")
   type: String!
     @index(name: "bookmarksByCreatedAt", queryField: "listBookmarksOrderByCreatedAt", sortKeyFields: ["createdAt"])
   createdAt: AWSDateTime!
@@ -25,5 +25,5 @@ type Tag
     rules: [{ allow: public, provider: iam, operations: [read] }, { allow: private, provider: iam }, { allow: public }]
   ) {
   id: ID!
-  bookmarks: [Bookmark] @manyToMany(relationName: "BookmakTags")
+  bookmarks: [Bookmark] @manyToMany(relationName: "BookmarkTag")
 }
