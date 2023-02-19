@@ -18,12 +18,12 @@ export default function TagPage({ tag, initBookmarks, initErrorMessage, initNext
   return (
     <Stack spacing={2}>
       <Head>
-        <title>@gomi_ningen bookmarks for {tag}</title>
+        <title>{`@gomi_ningen bookmarks for ${tag}`}</title>
       </Head>
       <Typography variant="h3">Bookmarks for {tag}:</Typography>
       <BookmarkList initBookmarks={initBookmarks} initNextToken={initNextToken} initErrorMessage={initErrorMessage} />
       <Typography variant="caption" textAlign="right">
-        Generated at {generatedAt}
+        <span suppressHydrationWarning>Generated at {generatedAt}</span>
       </Typography>
     </Stack>
   )

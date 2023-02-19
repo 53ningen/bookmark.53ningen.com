@@ -19,14 +19,14 @@ export const BookmarkDate = ({ createdAt, updatedAt }: BookmarkDateProps) => {
         size="small"
         variant="outlined"
         icon={<CreateIcon fontSize="inherit" />}
-        label={createdDate}
+        label={<span suppressHydrationWarning>{createdDate}</span>}
       />
       <Chip
         sx={{ fontSize: 12 }}
         size="small"
         variant="outlined"
         icon={<RefreshIcon fontSize="inherit" />}
-        label={updatedDate}
+        label={<span suppressHydrationWarning>{updatedDate}</span>}
       />
     </Stack>
   )

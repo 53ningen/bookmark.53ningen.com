@@ -16,7 +16,7 @@ export default function Home({ initBookmarks, initNextToken, initErrorMessage, g
     <Stack spacing={2}>
       <BookmarkList initBookmarks={initBookmarks} initNextToken={initNextToken} />
       <Typography variant="caption" textAlign="right">
-        Generated at {generatedAt}
+        <span suppressHydrationWarning>Generated at {generatedAt}</span>
       </Typography>
     </Stack>
   )
