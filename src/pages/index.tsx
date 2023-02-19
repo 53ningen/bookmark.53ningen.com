@@ -2,7 +2,7 @@ import { Stack, Typography } from '@mui/material'
 import { API, graphqlOperation } from 'aws-amplify'
 import { Bookmark } from '../API'
 import { BookmarkList } from '../components/BookmarkList'
-import { listBookmarks } from '../graphql/queries'
+import { listBookmarksOrderByCreatedAt } from '../graphql/queries'
 
 interface HomeProps {
   initBookmarks?: Bookmark[]
@@ -28,10 +28,12 @@ export async function getStaticProps() {
     generatedAt: new Date().toISOString(),
   }
   try {
-    const res = await API.graphql(graphqlOperation(listBookmarks))
-    if ('data' in res && res.data.listBookmarks) {
-      props.initBookmarks = res.data.listBookmarks.items as Bookmark[]
-      const initNextToken = res.data.listBookmarks.nextToken
+    const res = await API.graphql(
+      graphqlOperation(listBookmarksOrderByCreatedAt, { type: 'Bookmark', sortDirection: 'DESC' })
+    )
+    if ('data' in res && res.data.listBookmarksOrderByCreatedAt) {
+      props.initBookmarks = res.data.listBookmarksOrderByCreatedAt.items as Bookmark[]
+      const initNextToken = res.data.listBookmarksOrderByCreatedAt.nextToken
       if (initNextToken) {
         props.initNextToken = initNextToken
       }
@@ -45,6 +47,7 @@ export async function getStaticProps() {
       throw Error('unexpected error')
     }
   } catch (e) {
+    console.log(e)
     props.initErrorMessage = e instanceof Error ? e.message : 'unexpected error'
     return {
       props,
